@@ -1,0 +1,66 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <header class="masthead" style="background-image: url('{{ asset('img/home-bg.jpg') }}')">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h1>Blog à Lucas</h1>
+                        <span class="subheading">Un blog</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-md-10 mx-auto">
+                {% for article in articles %}
+                    <div class="d-flex justify-content-between">
+                        <div class="post-preview mr-4">
+                            <a href="{{ url('show', {"id": article.getId() } )}}">
+                                <h2 class="post-title">
+                                    {{ article.getTitle() }}
+                                </h2>
+                                <h3 class="post-subtitle">
+                                    {{ article.getSubtitle() }}
+                                </h3>
+                            </a>
+                            <p class="post-meta">Posté par
+                                <a href="#">{{ article.getAuthor() }}</a>
+                                le {{ article.getCreatedAt()|date('d/m/Y') }}
+                            </p>
+                        </div>
+                        <img src="{{ article.getImage() }}" width="400"/>
+                    </div>
+                    <hr>
+                {% endfor %}
+                {% if pagination.nbPages > 0 %}
+                        {% if pagination.page > 1 %}
+                            <div class="clearfix">
+                                <a class="btn btn-primary float-left"  href="{{ path(pagination.nomRoute,
+                                    pagination.paramsRoute|merge({'page': pagination.page-1})) }}">
+                                    Newer posts
+                                </a>
+                            </div>
+                        {% endif %}
+
+                        {% if pagination.page < pagination.nbPages %}
+                            <div class="clearfix">
+                                <a class="btn btn-primary float-right"  href="{{ path(pagination.nomRoute,
+                                    pagination.paramsRoute|merge({'page': pagination.page+1})) }}">
+                                    Older posts
+                                </a>
+                            </div>
+                        {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+{% endblock %}

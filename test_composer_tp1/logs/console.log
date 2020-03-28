@@ -1,0 +1,4 @@
+[2020-03-19T13:05:40.533008+00:00] lucas writes a log.WARNING: Foo [] []
+[2020-03-19T13:35:37.019186+00:00] lucas writes a log.WARNING: Avertissement [] []
+[2020-03-19T13:35:37.021156+00:00] lucas writes a log.ERROR: Erreur [] []
+[2020-03-19T13:35:37.021156+00:00] lucas writes a log.ERROR: Erreur [] []

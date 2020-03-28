@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h1>Blog à Lucas</h1>
+                        <span class="subheading">Un blog</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                {% for article in articles %}
+                    <div class="d-flex justify-content-between">
+                        <div class="post-preview mr-4">
+                            <a href="post.html">
+                                <h2 class="post-title">
+                                    {{ article.getTitle() }}
+                                </h2>
+                                <h3 class="post-subtitle">
+                                    {{ article.getSubtitle() }}
+                                </h3>
+                            </a>
+                            <p class="post-meta">Posté par
+                                <a href="#">{{ article.getAuthor() }}</a>
+                                le {{ article.getCreatedAt()|date('d/m/Y') }}
+                            </p>
+                        </div>
+                        <img src="{{ article.getImage() }}" width="400"/>
+                    </div>
+                    <hr>
+                {% endfor %}
+                <div class="clearfix">
+                    <a class="btn btn-primary float-right" href="#">Anciens Posts &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+{% endblock %}
